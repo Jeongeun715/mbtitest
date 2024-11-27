@@ -1,27 +1,28 @@
 import React, { useState } from "react";
 import TestForm from "../components/TestForm";
 import { calculateMBTI, mbtiDescriptions } from "../utils/mbtiCalculator";
-import { createTestResult } from "../api/testResults";
 import { useNavigate } from "react-router-dom";
 
-const TestPage = ({ user }) => {
+const TestPage = () => {
+  const [result, setResult] = useState(null); // 최종 MBTI 결과
+  const [answers, setAnswers] = useState([]); // 사용자의 답변
   const navigate = useNavigate();
-  // MBTI 가 무엇인지 딱 MBTI 단어만 넣어주시면 됩니다!
-  const [result, setResult] = useState(null);
 
-  const handleTestSubmit = async (answers) => {
+  const handleTestSubmit = (answers) => {
+    // 답변 데이터를 사용해 MBTI 결과 계산
     const mbtiResult = calculateMBTI(answers);
-    /* Test 결과는 mbtiResult 라는 변수에 저장이 됩니다. 이 데이터를 어떻게 API 를 이용해 처리 할 지 고민해주세요. */
-    /* 처리하신 후에는 MBTI 결과를 setResult 로 넣어주도록 합시다!*/
+    setResult(mbtiResult); // 결과 상태에 저장
+    setAnswers(answers); // 답변 데이터 저장 (선택 사항)
   };
 
   const handleNavigateToResults = () => {
-    navigate("/results");
+    // 결과 페이지로 이동
+    navigate("/testResultPage", { state: { result, answers } });
   };
 
   return (
-    <div className="w-full flex flex-col items-center justify-center bg-white">
-      <div className="bg-white rounded-lg p-8 max-w-lg w-full h-full overflow-y-auto">
+    <div className="w-full flex flex-col items-center justify-center bg-gray-100 min-h-screen">
+      <div className="bg-white rounded-lg p-8 max-w-lg w-full shadow-lg">
         {!result ? (
           <>
             <h1 className="text-3xl font-bold text-primary-color mb-6">
@@ -40,7 +41,7 @@ const TestPage = ({ user }) => {
             </p>
             <button
               onClick={handleNavigateToResults}
-              className="w-full bg-primary-color text-white py-3 rounded-lg font-semibold hover:bg-primary-dark transition duration-300 hover:text-[#FF5A5F]"
+              className="w-full bg-[#FF5A5F] text-white py-3 rounded-lg hover:bg-[#fff] transition duration-300 hover:text-[#FF5A5F] hover:border-rose-400 border"
             >
               결과 페이지로 이동하기
             </button>

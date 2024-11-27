@@ -2,6 +2,7 @@
 import AuthForm from "../components/AuthForm";
 import { login, getUserProfile } from "../api/auth";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Login = ({ setUser }) => {
   const navigate = useNavigate();
@@ -12,6 +13,12 @@ const Login = ({ setUser }) => {
       if (data.success) {
         setUser(data);
         navigate("/");
+        Swal.fire({
+          title: "성공",
+          text: "로그인에 성공했습니다.",
+          icon: "success",
+          confirmButtonText: "확인",
+        });
       }
     } catch (error) {
       alert("로그인에 실패했습니다. 다시 시도해주세요.");

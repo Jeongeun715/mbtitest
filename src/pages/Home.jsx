@@ -1,17 +1,24 @@
 import React from "react";
-import Header from "../components/Header";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
-import RedButton from "../components/RedButton";
+import { useNavigate } from "react-router-dom";
 
-const Home = () => {
+const Home = ({ user }) => {
+  const navigate = useNavigate();
   const handleClick = () => {
-    Swal.fire({
-      title: "알림",
-      text: "로그인이 필요합니다. 로그인 페이지로 이동합니다.",
-      icon: "warning",
-      confirmButtonText: "확인",
-    });
+    if (user) {
+      // 로그인된 상태에서 테스트 페이지로 이동
+      navigate("/testPage");
+    } else {
+      // 로그인되지 않은 상태에서 경고창 표시
+      Swal.fire({
+        title: "알림",
+        text: "로그인이 필요합니다. 로그인 페이지로 이동합니다.",
+        icon: "warning",
+        confirmButtonText: "확인",
+      }).then(() => {
+        navigate("/login"); // 로그인 페이지로 이동
+      });
+    }
   };
   return (
     <>
@@ -47,12 +54,14 @@ const Home = () => {
             </div>
           </div>
 
-          <Link to="/login" className="flex justify-center w-full">
-            <RedButton
-              title="내 성격 알아보러 가기"
+          <div className="flex justify-center w-full">
+            <button
+              className="w-full bg-[#FF5A5F] text-white py-3 rounded-lg hover:bg-[#fff] transition duration-300 hover:text-[#FF5A5F] hover:border-rose-400 border"
               onClick={handleClick}
-            ></RedButton>
-          </Link>
+            >
+              내 성격 알아보러 가기
+            </button>
+          </div>
         </div>
       </div>
     </>

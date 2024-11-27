@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { questions } from "../data/questions";
+import RedButton from "../components/AuthForm";
 
 const TestForm = ({ onSubmit }) => {
   const [answers, setAnswers] = useState(
@@ -47,10 +48,7 @@ const TestForm = ({ onSubmit }) => {
           </div>
         </div>
       ))}
-      <button
-        type="submit"
-        className="w-full bg-primary-color text-white py-3 rounded-lg font-semibold hover:bg-primary-dark transition duration-300 hover:text-[#FF5A5F]"
-      >
+      <button className="w-full bg-[#FF5A5F] text-white py-3 rounded-lg hover:bg-[#fff] transition duration-300 hover:text-[#FF5A5F] hover:border-rose-400 border">
         제출하기
       </button>
     </form>
