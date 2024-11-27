@@ -1,0 +1,10 @@
+{
+  "users": [
+    {
+      "userId": "테스트아이디",
+      "userPassword": "123456789",
+      "userNickname": "정은이",
+      "id": "9769"
+    }
+  ]
+}
