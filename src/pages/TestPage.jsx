@@ -22,7 +22,7 @@ const TestPage = () => {
 
   return (
     <div className="w-full flex flex-col items-center justify-center bg-gray-100 min-h-screen">
-      <div className="bg-white rounded-lg p-8 max-w-lg w-full shadow-lg">
+      <div className="bg-white rounded-lg p-8 max-w-lg w-full shadow-lg mt-14 mb-20">
         {!result ? (
           <>
             <h1 className="text-3xl font-bold text-primary-color mb-6">

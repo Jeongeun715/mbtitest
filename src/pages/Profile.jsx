@@ -24,21 +24,26 @@ const Profile = ({ user, setUser }) => {
   };
 
   return (
-    <div>
-      <div>
-        <h1>프로필 수정</h1>
+    <div className="bg-slate-100 text-[#484848] h-full flex flex-col justify-between min-h-screen">
+      <div className=" container mx-auto pt-10 main">
+        <h1 className="font-bold text-3xl mb-6 text-center">프로필 수정</h1>
         <form onSubmit={handleSubmit}>
-          <div>
-            <label>닉네임</label>
+          <div className="flex items-center space-x-2">
+            <label className="text-gray-700">닉네임</label>
             <input
               id="nickname"
               type="text"
               value={nickname}
               onChange={handleNicknameChange}
-              className="w-full p-2 border border-gray-300 rounded-md"
+              className="p-2 border border-gray-300 rounded-md flex-grow"
             />
           </div>
-          <button type="submit">프로필 업데이트</button>
+          <button
+            className="w-full bg-[#FF5A5F] text-white py-3 rounded-lg hover:bg-[#fff] transition duration-300 hover:text-[#FF5A5F] hover:border-rose-400 border mt-4"
+            type="submit"
+          >
+            프로필 업데이트
+          </button>
         </form>
       </div>
     </div>
